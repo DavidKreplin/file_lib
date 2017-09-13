@@ -9,7 +9,7 @@ void write_string(const char *path, std::string &data) {
    file.open (path,std::ios::app);
 
    if (file.is_open()) {
-      file << data.c_str() << std::endl;
+      file << data.c_str();
       file.close();
    } 
    else {
