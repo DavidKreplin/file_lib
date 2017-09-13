@@ -15,7 +15,7 @@ void read_string(const char *path, std::string &data) {
       char* buffer  = new char [length];
       file.read (buffer,length);
       data.append(buffer,length);
-      delete buffer;
+      delete[] buffer;
    } 
    else {
       throw std::runtime_error("File could not be loaded");
