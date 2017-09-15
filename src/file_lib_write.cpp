@@ -3,7 +3,7 @@
 #include <fstream>
 #include <stdexcept>
 
-void write_string(const char *path, std::string &data) {
+void write_string(std::string path, std::string &data) {
 
    std::ofstream file;
    file.open (path,std::ios::app);
@@ -15,6 +15,5 @@ void write_string(const char *path, std::string &data) {
    else {
       throw std::runtime_error("File could not be opendd");
    } 
-   file.close();
    return;
 }

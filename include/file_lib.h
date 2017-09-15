@@ -10,7 +10,7 @@
  * @param path Path to the file
  * @param data Returns the content of the file specified in path.
  */
-void read_string(const char *path, std::string &data);
+void read_string(std::string path, std::string &data);
 
 /** @brief Writes a string into the file
  *
@@ -19,7 +19,7 @@ void read_string(const char *path, std::string &data);
  * @param path Path to the file
  * @param data String, which is writen into the file
  */
-void write_string(const char *path, std::string &data);
+void write_string(std::string path, std::string &data);
 
 
 /** @} */

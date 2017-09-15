@@ -2,20 +2,17 @@
 #include <iostream>
 #include <fstream>
 #include <stdexcept>
+#include <sstream>
 
-void read_string(const char *path, std::string &data) {
+void read_string(std::string path, std::string &data) {
 
    std::ifstream file;
    file.open (path);
 
    if (file.is_open()) {
-      file.seekg(0,std::ios::end);
-      int length = file.tellg();
-      file.seekg(0,std::ios::beg);
-      char* buffer  = new char [length];
-      file.read (buffer,length);
-      data.append(buffer,length);
-      delete[] buffer;
+	   std::stringstream buffer;
+	   buffer << file.rdbuf();
+	   data = buffer.str();
    } 
    else {
       throw std::runtime_error("File could not be loaded");
