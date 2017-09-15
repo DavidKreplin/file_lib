@@ -7,7 +7,7 @@
 void read_string(std::string path, std::string &data) {
 
    std::ifstream file;
-   file.open (path);
+   file.open(path.c_str());
 
    if (file.is_open()) {
 	   std::stringstream buffer;
