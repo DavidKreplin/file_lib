@@ -25,7 +25,7 @@ if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
 
     # create command "make doc"
-    add_custom_target( doc ALL
+    add_custom_target( doc
           COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
           WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
           COMMENT "Generating API documentation with Doxygen" VERBATIM)
