@@ -1,3 +1,6 @@
+#ifndef _FILE_LIB_H
+#define _FILE_LIB_H
+
 #include <string>
 
 /** @defgroup rwl_group Read and Write Library 
@@ -23,3 +26,5 @@ void write_string(std::string path, std::string &data);
 
 
 /** @} */
+
+#endif
