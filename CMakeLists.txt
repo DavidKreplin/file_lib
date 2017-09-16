@@ -1,16 +1,17 @@
 cmake_minimum_required(VERSION 2.8.9)
 project(file_lib)
-message ("configurating TESTLIB!!!")
+
 # Code
 include_directories(${CMAKE_CURRENT_SOURCE_DIR}/include)
 file(GLOB SOURCES ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
 
 # Compile library
 add_library(file_lib ${SOURCES})
+
 # Export header files incase of included submodule
 target_include_directories(file_lib PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-# configuration for "make install" (if not included)
+# configuration for "make install" and "make doc" (if standalone)
 if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
 
   # check if Doxygen is installed
@@ -22,28 +23,20 @@ if(CMAKE_SOURCE_DIR STREQUAL PROJECT_SOURCE_DIR)
 
     # request to configure the file
     configure_file(${DOXYGEN_IN} ${DOXYGEN_OUT} @ONLY)
-    #message("Doxygen build started")
 
-    # note the option ALL which allows to build the docs together with the application
+    # create command "make doc"
     add_custom_target( doc ALL
           COMMAND ${DOXYGEN_EXECUTABLE} ${DOXYGEN_OUT}
           WORKING_DIRECTORY ${CMAKE_CURRENT_BINARY_DIR}
-          COMMENT "Generating API documentation with Doxygen"
-          VERBATIM )
+          COMMENT "Generating API documentation with Doxygen" VERBATIM)
   else (DOXYGEN_FOUND)
     message("Doxygen need to be installed to generate the doxygen documentation")
   endif (DOXYGEN_FOUND)
 
-
   # Copy libirary file (file_lib.a)
-  install (TARGETS file_lib
-           ARCHIVE DESTINATION lib
-           LIBRARY DESTINATION lib) 
+  install (TARGETS file_lib ARCHIVE DESTINATION lib LIBRARY DESTINATION lib) 
   # Copy header files
   install (FILES include/test.h DESTINATION include/file_lib)
-
-
-
 
 else()
   # called as a subdirectory => no installation 
